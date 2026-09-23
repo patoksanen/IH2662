@@ -1,4 +1,4 @@
-﻿# IH2662 - Junction termination simulations
+# IH2662 - Junction termination simulations
 
 Silicon power-junction studies using Gmsh, DEVSIM and ParaView/PyVista.
 Current work compares a plain curved junction with a floating guard ring.
@@ -22,7 +22,19 @@ Results use a constant peak-electric-field criterion, not an impact-ionization a
 The guard-ring value is from the saved completed run, not a new independent validation. Neither the guard-ring mesh nor physical-model accuracy is established by this table. See the per-case summaries and investigation notes.
 
 ## Running locally
-The original setup is Windows/PowerShell. Install Python, create `.venv`, and install the versions in `requirements-lock.txt`. ParaView is installed separately. The launcher expects the MKL runtime at `.venv/Library/bin/mkl_rt.2.dll`; review `ih2662.cmd` if recreating the environment on another machine. The lock file records the local environment, not a tested cross-platform installer.
+On Windows, install **64-bit Python 3.12**, then double-click **`Setup.cmd`** in the repository root. Include the Python launcher when installing Python. Setup creates `.venv`, installs the pinned dependencies, checks MKL and tests meshing, plot/file output and a small DEVSIM diode solve. It requires internet access for the packages and can take several minutes. It does not run the full project simulations.
+
+To check an existing environment without installing anything:
+```powershell
+.\Setup.cmd -CheckOnly
+```
+
+If Python is not detected automatically:
+```powershell
+.\Setup.cmd -PythonExe "C:\path\to\python.exe"
+```
+
+See [SETUP.md](SETUP.md) for troubleshooting. ParaView is optional and installed separately; setup reports whether it finds an installation. The package versions are pinned for reproducibility. This installer targets Windows and Python 3.12, not other platforms.
 
 From the project root:
 ```powershell
