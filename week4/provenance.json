@@ -1,0 +1,7 @@
+{
+  "source": "../week3/silicon_baseline.py",
+  "source_sha256": "4c1d2cc40fdbaec7d7c333011815df6e02e1f6432aceaf708e72500f7a3d7849",
+  "accepted_baseline": "../week3/mesh_investigation/edge_0025",
+  "design": "Uncontacted Gaussian p diffusion; no imposed ring voltage, metal ring, oxide, or impact ionization",
+  "defaults": "3 um nominal surface gap, 2 um implant width, 3 um depth; initial design, not optimized"
+}

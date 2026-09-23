@@ -1,0 +1,98 @@
+[
+  {
+    "case": "Original",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\results\\baseline_double_h1",
+    "voltage_V": 127.16276440087577,
+    "nodes": 7610,
+    "triangles": 14885,
+    "peak_x_um": 42.03795125034309,
+    "peak_depth_um": 0.18440350975987277,
+    "peak_max_edge_um": 0.35756321127586566,
+    "E_at_100V_interpolated_V_cm": 218706.65194923448,
+    "max_current_imbalance_A_per_cm": 3.84281282741931e-12
+  },
+  {
+    "case": "Global x0.7",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\results\\baseline_double_h0.7",
+    "voltage_V": 131.31271442322534,
+    "nodes": 15366,
+    "triangles": 30254,
+    "peak_x_um": 42.04210379325224,
+    "peak_depth_um": 0.23223734001358567,
+    "peak_max_edge_um": 0.23537517972011002,
+    "E_at_100V_interpolated_V_cm": 215263.22964062373,
+    "max_current_imbalance_A_per_cm": 4.9059565043287664e-12
+  },
+  {
+    "case": "Field only",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\field_only",
+    "voltage_V": 124.37554563709972,
+    "nodes": 3189,
+    "triangles": 6199,
+    "peak_x_um": 41.95733233058985,
+    "peak_depth_um": 0.12489501915263383,
+    "peak_max_edge_um": 0.42253606885406186,
+    "E_at_100V_interpolated_V_cm": 220497.01969159514,
+    "max_current_imbalance_A_per_cm": 1.0264868147746055e-12
+  },
+  {
+    "case": "Local 0.10 um",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\edge_010",
+    "voltage_V": 128.02083281691432,
+    "nodes": 10803,
+    "triangles": 21231,
+    "peak_x_um": 42.10441141124672,
+    "peak_depth_um": 0.05530018115232623,
+    "peak_max_edge_um": 0.10759995196052426,
+    "E_at_100V_interpolated_V_cm": 219446.06201407508,
+    "max_current_imbalance_A_per_cm": 4.0989230687741704e-12
+  },
+  {
+    "case": "Local 0.07 um",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\edge_007",
+    "voltage_V": 130.60972510276667,
+    "nodes": 14381,
+    "triangles": 28363,
+    "peak_x_um": 42.00879163257361,
+    "peak_depth_um": 0.045515386624726185,
+    "peak_max_edge_um": 0.08976514975344524,
+    "E_at_100V_interpolated_V_cm": 214620.61922971165,
+    "max_current_imbalance_A_per_cm": 3.980660579732494e-12
+  },
+  {
+    "case": "Local 0.05 um",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\edge_005",
+    "voltage_V": 127.8404350439123,
+    "nodes": 20661,
+    "triangles": 40890,
+    "peak_x_um": 42.25667118688658,
+    "peak_depth_um": 0.02888448051653958,
+    "peak_max_edge_um": 0.05533310959955845,
+    "E_at_100V_interpolated_V_cm": 220977.20591232777,
+    "max_current_imbalance_A_per_cm": 3.801170840492294e-12
+  },
+  {
+    "case": "Bulk max 1.5 um",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\bulk15",
+    "voltage_V": 127.12991043525186,
+    "nodes": 15211,
+    "triangles": 29959,
+    "peak_x_um": 42.03795125034291,
+    "peak_depth_um": 0.18440350975982653,
+    "peak_max_edge_um": 0.3575632112758169,
+    "E_at_100V_interpolated_V_cm": 218700.4644376339,
+    "max_current_imbalance_A_per_cm": 3.858187160197065e-12
+  },
+  {
+    "case": "Local 0.10 + bulk 1.5",
+    "folder": "C:\\Users\\oksan\\IH2662\\week3\\mesh_investigation\\edge_010_bulk15",
+    "voltage_V": 127.731678341816,
+    "nodes": 18742,
+    "triangles": 36982,
+    "peak_x_um": 42.104418046758546,
+    "peak_depth_um": 0.055301796695739945,
+    "peak_max_edge_um": 0.10759834842714025,
+    "E_at_100V_interpolated_V_cm": 219782.21698216343,
+    "max_current_imbalance_A_per_cm": 4.235531424360471e-12
+  }
+]

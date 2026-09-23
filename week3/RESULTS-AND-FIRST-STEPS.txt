@@ -1,0 +1,35 @@
+INITIAL RESULTS - setup checked on 2026-09-20
+=============================================
+All three teaching runs have already been completed, so you can inspect
+the outputs before rerunning them.
+
+Case                           Field-criterion voltage     Nodes
+Standard edge baseline         127.163 V                    7610
+Finer edge baseline (0.7)       131.313 V                    15366
+Flat planar control            591.718 V                    1478
+
+The flat control is 1.38% below the 600 V hand-calculation target.
+The edge result changes by 3.16% between these two meshes.
+Standard and extended precision agree on the base-mesh crossing.
+The saved checker also tests field reconstruction, finite/monotonic
+voltage data, crossing brackets and contact-current balance.
+
+Interpretation:
+The curved edge increases the peak field, so this specific unterminated
+geometry reaches the threshold much earlier than the flat control.
+Do not describe 127 V as an experimentally measured avalanche voltage.
+It is a constant-critical-field estimate for the documented geometry.
+Use roughly 130 V when discussing this initial result; the decimal
+places in the CSV are numerical output, not established physical accuracy.
+One mesh pair is an initial sensitivity check, not full convergence.
+Before final reporting, refine further and check the domain dimensions,
+surface assumptions and parameter references.
+
+START YOUR WALKTHROUGH
+1. Open START-HERE.txt.
+2. Double-click Run-Week3.cmd and choose 2 to see the existing mesh.
+3. Open results\baseline_double_h1\equilibrium_field.png.
+4. Open results\baseline_double_h1\peak_field.png.
+5. Open Open-Week3-ParaView.cmd for the final electric-field map.
+6. Use menu option 4 when you want to rerun the baseline yourself.
+The menu closes after each selection; double-click it again for the next.

@@ -1,0 +1,7 @@
+{
+  "status": "PASS: DEVSIM mesh import, independent doping check, two contacts only, positive node volumes",
+  "nodes": 156242,
+  "triangles": 311557,
+  "min_node_volume_cm2": 1.710881160218897e-12,
+  "bias_solved": false
+}

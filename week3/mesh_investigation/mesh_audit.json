@@ -1,0 +1,78 @@
+[
+  {
+    "case": "baseline_double_h1",
+    "nodes": 7610,
+    "triangles": 14885,
+    "quality_min": 0.6882964512604994,
+    "angle_min_deg": 34.28925732054609,
+    "degenerate_triangles": 0,
+    "peak_centroid_um": [
+      42.03795125034309,
+      0.18440350975987277
+    ],
+    "peak_triangle_vertices_um": [
+      [
+        42.117647058826314,
+        0.0
+      ],
+      [
+        42.09227861809598,
+        0.35666215424799547
+      ],
+      [
+        41.90392807410698,
+        0.1965483750316229
+      ]
+    ],
+    "peak_triangle_edges_um": [
+      0.35756321127586566,
+      0.2472091214253686,
+      0.29035679457700836
+    ],
+    "peak_distance_to_metallurgical_junction_um": 0.9537229041044486,
+    "local_acceptor_efold_length_um": 0.3921695422760124,
+    "global_junction_efold_length_um": 0.2674958506890821,
+    "peak_element_min_net_doping_cm3": -9834497725139070.0,
+    "edge_patch_triangles": 825,
+    "neutral_p_triangles": 1100,
+    "peak_V_cm": 262889.7229238505
+  },
+  {
+    "case": "baseline_double_h0.7",
+    "nodes": 15366,
+    "triangles": 30254,
+    "quality_min": 0.6880290012876383,
+    "angle_min_deg": 33.286875777788175,
+    "degenerate_triangles": 0,
+    "peak_centroid_um": [
+      42.04210379325224,
+      0.23223734001358567
+    ],
+    "peak_triangle_vertices_um": [
+      [
+        42.134867487310935,
+        0.3259334669433779
+      ],
+      [
+        41.919838819440635,
+        0.23020391444155938
+      ],
+      [
+        42.07160507300514,
+        0.14057463865581982
+      ]
+    ],
+    "peak_triangle_edges_um": [
+      0.23537517972011002,
+      0.17625663902072222,
+      0.19585716297326147
+    ],
+    "peak_distance_to_metallurgical_junction_um": 0.9447330867958379,
+    "local_acceptor_efold_length_um": 0.39045417746552824,
+    "global_junction_efold_length_um": 0.2674958506890821,
+    "peak_element_min_net_doping_cm3": -9367529083949558.0,
+    "edge_patch_triangles": 1697,
+    "neutral_p_triangles": 2217,
+    "peak_V_cm": 262646.68325457687
+  }
+]

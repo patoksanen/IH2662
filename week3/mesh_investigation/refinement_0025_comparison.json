@@ -1,0 +1,43 @@
+{
+  "checks": "PASS: matching physical parameters; finite and monotonic CSV data; crossing brackets and interpolation; nonempty exports; 0.025 um local target",
+  "results": [
+    {
+      "variant": "edge_005",
+      "threshold_V": 127.8404350439123,
+      "nodes": 20661,
+      "peak_x_um": 42.25667118688658,
+      "peak_depth_um": 0.028884480516539572,
+      "final_current_imbalance_fraction": 0.0019755040165048885,
+      "bracket_V": [
+        127.749267578125,
+        128.749267578125
+      ]
+    },
+    {
+      "variant": "edge_0035",
+      "threshold_V": 120.76083079870357,
+      "nodes": 34180,
+      "peak_x_um": 42.07497737212522,
+      "peak_depth_um": 0.6216025036716629,
+      "final_current_imbalance_fraction": 0.004142562328860245,
+      "bracket_V": [
+        120.749267578125,
+        121.749267578125
+      ]
+    },
+    {
+      "variant": "edge_0025",
+      "threshold_V": 121.54766993123499,
+      "nodes": 60076,
+      "peak_x_um": 41.988574225995904,
+      "peak_depth_um": 0.0069544840084943,
+      "final_current_imbalance_fraction": 0.0038276620871761755,
+      "bracket_V": [
+        120.749267578125,
+        121.749267578125
+      ]
+    }
+  ],
+  "last_relative_change_percent": 0.6473502396027639,
+  "convergence": "Not established: one sub-1% pair, preceding pair above 1%, and peak location changed"
+}

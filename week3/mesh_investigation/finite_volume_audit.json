@@ -1,0 +1,42 @@
+[
+  {
+    "case": "original",
+    "negative_node_volumes": 0,
+    "zero_node_volumes": 0,
+    "negative_edge_couples": 0,
+    "min_node_volume": 1.3376623313243294e-10,
+    "min_edge_couple": 1.429450517603965e-07
+  },
+  {
+    "case": "global_07",
+    "negative_node_volumes": 0,
+    "zero_node_volumes": 0,
+    "negative_edge_couples": 0,
+    "min_node_volume": 1.0181754911129934e-10,
+    "min_edge_couple": 5.784823578124041e-08
+  },
+  {
+    "case": "field_only",
+    "negative_node_volumes": 0,
+    "zero_node_volumes": 0,
+    "negative_edge_couples": 0,
+    "min_node_volume": 2.9351772586657456e-10,
+    "min_edge_couple": 1.624749009446501e-07
+  },
+  {
+    "case": "local_010",
+    "negative_node_volumes": 0,
+    "zero_node_volumes": 0,
+    "negative_edge_couples": 0,
+    "min_node_volume": 2.981724243067906e-11,
+    "min_edge_couple": 3.515030841900553e-07
+  },
+  {
+    "case": "local_007",
+    "negative_node_volumes": 0,
+    "zero_node_volumes": 0,
+    "negative_edge_couples": 0,
+    "min_node_volume": 1.3333311151238696e-11,
+    "min_edge_couple": 3.119835995316876e-08
+  }
+]

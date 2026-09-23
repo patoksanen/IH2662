@@ -1,0 +1,8 @@
+{
+  "source_sha256": "f3a65fc7b9c2e9090b7e16a582ce038f125de8cfc1db371b1ebea83f95af0e2d",
+  "local_successive_changes_percent": [
+    1.9821588965257786,
+    2.1662082563338814
+  ],
+  "scope": "mesh-resolution diagnosis, not validated device physics or asymptotic error bound"
+}
