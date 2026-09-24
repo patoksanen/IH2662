@@ -1,8 +1,8 @@
 {
   "case": "edge_baseline",
-  "criterion_voltage_V": 127.16276440087577,
+  "criterion_voltage_V": 127.14011012869526,
   "last_voltage_V": 127.749267578125,
-  "last_peak_field_V_cm": 262889.7229238505,
+  "last_peak_field_V_cm": 262924.086952139,
   "nodes": 7610,
   "triangles": 14885,
   "ideal_abrupt_voltage_from_constants_V": 604.6871234895538,

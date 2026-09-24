@@ -1,35 +1,42 @@
-INITIAL RESULTS - setup checked on 2026-09-20
-=============================================
-All three teaching runs have already been completed, so you can inspect
-the outputs before rerunning them.
+WEEK 3 RESULTS — QUICK ORIENTATION
+==================================
 
-Case                           Field-criterion voltage     Nodes
-Standard edge baseline         127.163 V                    7610
-Finer edge baseline (0.7)       131.313 V                    15366
-Flat planar control            591.718 V                    1478
+This file is a short companion to START-HERE.txt. It does not replace the
+full assumptions, commands, or limitations documented there.
 
-The flat control is 1.38% below the 600 V hand-calculation target.
-The edge result changes by 3.16% between these two meshes.
-Standard and extended precision agree on the base-mesh crossing.
-The saved checker also tests field reconstruction, finite/monotonic
-voltage data, crossing brackets and contact-current balance.
+Verified cases
+--------------
+Flat planar control:              591.718 V
+Curved baseline:                  127.140 V
+Curved finer mesh (0.7 scale):   131.357 V
+Accepted local refinement:        121.548 V
 
-Interpretation:
-The curved edge increases the peak field, so this specific unterminated
-geometry reaches the threshold much earlier than the flat control.
-Do not describe 127 V as an experimentally measured avalanche voltage.
-It is a constant-critical-field estimate for the documented geometry.
-Use roughly 130 V when discussing this initial result; the decimal
-places in the CSV are numerical output, not established physical accuracy.
-One mesh pair is an initial sensitivity check, not full convergence.
-Before final reporting, refine further and check the domain dimensions,
-surface assumptions and parameter references.
+Interpretation
+--------------
+The planar control is close to the approximately 600 V hand calculation.
+The curved edge has a much lower constant-field criterion because the
+junction edge crowds the field. These values are not avalanche voltages.
 
-START YOUR WALKTHROUGH
-1. Open START-HERE.txt.
-2. Double-click Run-Week3.cmd and choose 2 to see the existing mesh.
-3. Open results\baseline_double_h1\equilibrium_field.png.
-4. Open results\baseline_double_h1\peak_field.png.
-5. Open Open-Week3-ParaView.cmd for the final electric-field map.
-6. Use menu option 4 when you want to rerun the baseline yourself.
-The menu closes after each selection; double-click it again for the next.
+First inspection
+-----------------
+1. Read week3/START-HERE.txt.
+2. Open results/baseline_double_h1/mesh.png.
+3. Open equilibrium_field.png and peak_field.png.
+4. Open final_field.png or final.vtu.
+5. Compare the planar and finer-mesh summaries.
+6. Run check_results.py before quoting a result.
+
+Windows:
+  ..\ih2662.cmd week3\check_results.py
+
+macOS:
+  ../ih2662.sh week3/check_results.py
+
+ParaView
+--------
+Windows: Open-Week3-ParaView.cmd
+macOS:   Open-Week3-ParaView.command
+
+Load final.vtu, select ElectricField_V_cm, enable Surface With Edges, use +Z,
+and rescale the color range. The final map is at the upper crossing bracket,
+not exactly at the interpolated threshold.
