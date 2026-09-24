@@ -1,12 +1,20 @@
-# Set up IH2662 on Windows
+# Set up IH2662 on Windows and macOS
 
-1. Clone the repository or extract the complete ZIP into a normal folder.
-2. Install **64-bit Python 3.12** from https://www.python.org/downloads/windows/ and include the Python launcher. Git is optional if you downloaded a ZIP.
-3. Double-click **Setup.cmd**. Leave the window open while it downloads and installs the locked Python packages.
-4. Confirm the final **PASS: IH2662 simulation environment is ready.** message. A failure exits with a nonzero code and prints the failing step.
-5. Read week4/START-HERE.md. Regenerate meshes or run a new simulation case to obtain ParaView datasets; large datasets are not in Git.
+## Windows
+1. Install 64-bit Python 3.12 from https://www.python.org/downloads/windows/ and include the Python launcher.
+2. Double-click `Setup.cmd`, or run `.\Setup.cmd` from PowerShell.
+3. Confirm the final `PASS: IH2662 simulation environment is ready.` message.
 
-No administrator privileges are normally required when the project folder is writable. Setup.cmd uses Windows PowerShell with a process-local execution-policy setting; it does not change the machine's execution policy. If an organization policy blocks it, follow that organization's software-installation procedure.
+## macOS
+1. Install Python 3.12 or newer and ensure `python3` is on PATH.
+2. From Terminal, run `./setup.sh`. It creates `.venv`, installs the ARM-compatible dependency subset, and runs the smoke checks.
+3. Use `./ih2662.sh` for simulations. The macOS setup intentionally omits Intel MKL packages unavailable on Apple Silicon; DEVSIM uses its macOS UMFPACK/OpenBLAS backend.
+4. Optional ParaView: `brew install --cask paraview`.
+
+Both platforms should read `week4/START-HERE.md` after setup. Regenerate meshes or
+run a new simulation case to obtain ParaView datasets; large datasets are not in Git.
+
+No administrator privileges are normally required when the project folder is writable. `Setup.cmd` uses a process-local PowerShell execution policy and does not change the machine policy.
 
 ## What setup does
 - Uses an existing .venv if present; otherwise creates one with 64-bit Python 3.12.
@@ -17,7 +25,14 @@ No administrator privileges are normally required when the project folder is wri
 - Keeps test output in a temporary directory, leaving week3/week4 simulation results untouched.
 - Detects ParaView on PATH or under Program Files, without installing or launching it.
 
-## Commands
+On macOS, install ParaView with `brew install --cask paraview`. The repository
+includes `Open-ParaView.command`, `week3/Open-Week3-ParaView.command`, and
+`week4/Open-Week4-ParaView.command` for opening the generated datasets. These
+launchers prefer a corrected user-local copy at
+`~/Applications/ParaView-6.1.1.app` when present, then fall back to the
+system app or Homebrew launcher.
+
+## Windows commands
 ```powershell
 .\Setup.cmd
 .\Setup.cmd -CheckOnly
@@ -37,3 +52,18 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 - **Solver outputs already exist after cloning:** use a new --output folder for a fresh simulation, as described in the Week 4 guide. Tracked summaries and plots are saved research records, not a resumable solver state.
 
 The smoke test checks the installed tools, not mesh convergence or physical accuracy of the research model. A clean-machine test may still reveal machine-specific runtime issues.
+
+## macOS commands
+
+```bash
+./setup.sh
+./ih2662.sh week1.py diode
+./ih2662.sh week1.py mesh
+./ih2662.sh week1.py mos
+./ih2662.sh week1.py screenshot
+./week3/Run-Week3.sh mesh
+./week4/Run-Week4.sh check
+```
+
+The `.cmd` and `.ps1` files remain the Windows path; the `.sh` and `.command`
+files are the macOS path.

@@ -1,178 +1,121 @@
-IH2662 WEEK 3 - SILICON BASELINE
-================================
-Folder: C:\Users\oksan\IH2662\week3
+# Week 3 — silicon curved-edge baseline
 
-WHAT YOU ARE DOING
-Turn your 600 V hand calculation into a 2D silicon p-n junction,
-increase reverse voltage, and measure the maximum electric field.
-The crossing of 262,000 V/cm is a FIELD-CRITERION ESTIMATE.
-This model does not include avalanche impact ionization.
+## Purpose
 
-OPEN THESE
-1. File Explorer: C:\Users\oksan\IH2662\week3
-2. Your hand calculations: Downloads\Week2 Project.pdf
-3. This guide (Notepad).
-4. Double-click Run-Week3.cmd for the numbered menu.
-   Menu simulations write detailed output into logs; allow them to finish.
-   Alternatively type powershell in File Explorer's address bar, press Enter,
-   and use the commands below to watch the simulation output live.
+Week 3 converts the approximately 600 V analytical planar estimate into a
+2-D silicon p-n junction. It separates three questions:
 
-STEP 1 - REVIEW YOUR INPUTS
-Open parameters.json in Notepad. You do not need to change it initially.
-Hand-calculation inputs:
-  Donor doping:                 3.67e14 cm^-3
-  Critical field:               2.62e5 V/cm
-  Ideal target:                 600 V
-  Depletion width at breakdown: 45.9 um
-  Silicon relative permittivity:11.7
-  Electron mobility:            1420 cm^2/(V s)
+1. Does a flat numerical control reproduce the analytical target?
+2. How much does a curved, unterminated edge reduce the field criterion?
+3. Is the result sensitive to local mesh size?
 
-Additional, provisional modelling choices (not supplied by your hand sheet):
-  Temperature: 300 K.
-  Gaussian p diffusion with peak acceptor doping 1e17 cm^-3.
-  Junction depth: 3 um; flat junction from x=0 to x=40 um, then a
-  quarter-circle edge of radius 3 um, meeting the top at x=43 um.
-  Top anode covers x=0 to x=38 um, entirely inside the p region.
-  Width: 120 um. Total thickness: 63 um.
-  Drift thickness below flat junction: 60 um.
-  60 um is deliberately larger than the 45.9 um depletion width to avoid
-  forcing punch-through at the analytical breakdown point. It is a
-  documented simulation choice, NOT a new hand-calculation result.
-  Bottom n contact is ohmic; no n+ substrate is explicitly modelled.
-  Uncontacted boundaries use zero normal flux. Left side is a symmetry
-  boundary; top outside the anode and far right have no oxide/surface charge.
-  No guard ring, field plate, surface traps or impact ionization.
-  Constant hole mobility 450 cm^2/(V s), ni=1e10 cm^-3,
-  SRH lifetimes 10 us. These are assumptions requiring sources before report.
-  Keep these choices fixed when comparing termination structures.
+The criterion is the reverse-bias magnitude where the maximum reconstructed
+electric field crosses 262,000 V/cm. It is not an avalanche model.
 
-The acceptor profile is:
-  NA(x,y)=NApeak*exp(-(y^2+max(x-40um,0)^2)/L^2)
-  L=3um/sqrt(ln(NApeak/ND)).
-Thus ND-NA=0 lies exactly on the stated junction.
-The smooth diffusion differs from the ideal abrupt hand-calculation model.
+## Inputs and units
 
-STEP 2 - GENERATE AND INSPECT THE MESH
-Menu option 1, or:
-  .\Run-Week3.cmd mesh
-Then menu option 2, or:
-  .\Run-Week3.cmd view-mesh
+The solver uses centimetres, volts, and `cm^-3`; plots use micrometres.
 
-Gmsh opens the NEW silicon mesh, not the old MOSFET.
-Coordinates in Gmsh are CENTIMETRES: 0.012 cm = 120 um.
-Look for a rectangular silicon region and small triangles around the
-junction at 3 um depth and its curved edge. Close Gmsh when finished.
-The generated .geo and .msh are in results\baseline_double_h1.
-Edit parameters.json to change geometry; generated .geo files are overwritten.
+| Quantity | Value |
+|---|---:|
+| Donor concentration | `3.67e14 cm^-3` |
+| Critical field criterion | `2.62e5 V/cm` |
+| Analytical target | 600 V |
+| Analytical depletion width | 45.9 µm |
+| Relative permittivity | 11.7 |
+| Temperature | 300 K |
+| Electron/hole mobility | 1420 / 450 `cm²/(V s)` |
+| Peak acceptors | `1e17 cm^-3` |
+| Junction depth | 3 µm |
+| Device width / drift thickness | 120 / 60 µm |
 
-STEP 3 - SOLVE AT ZERO BIAS
-Menu option 3, or:
-  .\Run-Week3.cmd equilibrium
-Open:
-  results\baseline_double_h1\mesh.png
-  results\baseline_double_h1\equilibrium_field.png
+The acceptor profile is a smooth Gaussian diffusion. It is not the abrupt
+step used by the hand calculation, so a small planar discrepancy is expected.
+The finite domain, insulating outer boundaries, lifetimes, and mobilities are
+modelling assumptions requiring sources before a final publication claim.
 
-A built-in junction field exists even at zero applied voltage.
-Check that the red/cyan junction contour is in the intended location.
-The mesh plot is in micrometres; depth increases downwards.
+## Step 1 — inspect parameters
 
-STEP 4 - RUN REVERSE BIAS
-Menu option 4, or:
-  .\Run-Week3.cmd run
+Read `parameters.json`. Do not change values mid-comparison. Copy the result
+folder or use a new output convention before running a variant.
 
-Cathode remains at 0 V. Anode is ramped negative.
-The plotted voltage is the POSITIVE magnitude of that reverse bias.
-Each BIAS line reports voltage, peak field and peak position.
-Steps reduce near the critical field; failed steps are retried smaller.
-The sweep stops once the critical field is crossed, or reports an error.
-A saved CSV alone does not mean the whole run passed: check for PASS.
+## Step 2 — generate and inspect the mesh
 
-Open results\baseline_double_h1:
-  peak_field.png       YOUR MAIN WEEK 3 PLOT
-  peak_field.csv       bias points and peak positions
-  final_field.png      field map at the last simulated bias
-  final.vtu            ParaView dataset at the last bias
-  summary.json         interpolated criterion voltage and mesh size
-  parameters_used.json snapshot of input values
+Windows:
 
-The final field map is at the upper crossing bracket, not precisely the
-interpolated criterion voltage. See summary.json and the CSV for values.
-Electric field is calculated from BOTH components of -grad(Potential)
-on each triangle, not from voltage itself or one edge projection.
+```powershell
+.\Run-Week3.cmd mesh
+.\Run-Week3.cmd view-mesh
+```
 
-STEP 5 - VIEW IN PARAVIEW
-Double-click Open-Week3-ParaView.cmd.
-If needed: select final.vtu in Pipeline Browser and click Apply.
-Choose ElectricField_V_cm in the coloring dropdown.
-Choose Surface With Edges to inspect the mesh.
-Use the +Z view and Rescale to Data Range.
-The exported geometry is in MICROMETRES and field values are V/cm.
-Potential_V is voltage; it is not electric field.
-The most intense field should be examined near the curved junction edge.
+macOS:
 
-STEP 6 - CHECK THE RESULT BEFORE TRUSTING IT
-A. Flat control: menu option 5, or:
-     .\Run-Week3.cmd run --planar
-   Results: results\planar_double_h1
-   This extends the p diffusion across the whole width and removes the
-   junction edge. Compare its threshold with the roughly 600 V ideal.
-   The Gaussian junction is not exactly the abrupt analytical junction.
-   If the discrepancy exceeds about 10%, investigate before continuing.
-   The real edge baseline may be substantially below 600 V: that is
-   not automatically a solver error.
+```bash
+./Run-Week3.sh mesh
+./Run-Week3.sh view-mesh
+```
 
-B. Mesh check: menu option 6, or:
-     .\Run-Week3.cmd run --mesh-scale 0.7
-   Results: results\baseline_double_h0.7
-   Compare criterion_voltage_V with baseline_double_h1.
-   A small change is encouraging; one pair is not a complete convergence
-   study. If the difference is more than a few percent, refine further.
-   For another refinement:
-     .\Run-Week3.cmd run --mesh-scale 0.5
+The mesh is in `results/baseline_double_h1/`; inspect `mesh.png`. Gmsh
+coordinates are centimetres; 0.012 cm equals 120 µm.
 
-C. Later, check lateral width/contact placement and surface assumptions.
-   The chosen finite domain must not control the answer.
+## Step 3 — solve equilibrium
 
-WHAT TO RECORD FOR YOUR REPORT
-- Hand-derived constants, with book/source and page/equation numbers.
-- Additional geometry and physics assumptions listed above.
-- Junction geometry and mesh image.
-- Peak field vs reverse voltage and the crossing bracket.
-- Criterion voltage, peak-field position and mesh comparison.
-- Explicit wording: constant critical-field estimate, no avalanche model.
-- Keep separate: edge baseline versus planar validation/control.
+```text
+Windows: .\Run-Week3.cmd equilibrium
+macOS:   ./Run-Week3.sh equilibrium
+```
 
-FILES AND RE-RUNS
-Each case/mesh scale has its own results folder. Rerunning the same case
-replaces its outputs; copy the folder before changing parameters if you
-want to preserve a previous experiment. Existing Week 1 files are untouched.
+Inspect `equilibrium_field.png`. A built-in junction field exists at zero
+applied bias.
 
-REFERENCES / IMPLEMENTATION
-DEVSIM simple_physics and diode_common helpers from installed DEVSIM 2.11.0:
-  https://github.com/devsim/devsim/blob/main/examples/diode/diode_common.py
-Gmsh ASCII MSH 2.2 import:
-  https://devsim.net/meshing.html
-DEVSIM model documentation:
-  https://devsim.net/models.html
-Gmsh manual:
-  https://gmsh.info/doc/texinfo/gmsh.html
-These document the tools, not the provenance of all material parameters.
+## Step 4 — run the curved baseline
 
+```text
+Windows: .\Run-Week3.cmd run
+macOS:   ./Run-Week3.sh run
+```
 
-NUMERICAL SETUP NOTES
-The initial local mesh target near the junction is 0.30 um; the 0.7
-refinement run uses 0.21 um. The planar control is a 10 um wide strip with
-insulating sides and a laterally uniform junction. Its width does not
-represent a junction edge.
-The script uses DEVSIM's bundled UMFPACK backend in standard precision;
-the installed MKL Pardiso backend was unreliable for this model.
-No changes to the original Week 1 launchers were needed.
-The reverse ramp starts at 0.1 V. A continuation predictor uses the last
-two successful solutions; steps grow up to 10 V and shrink near crossing.
-Runs may take several minutes. Leave the terminal open until PASS.
-For a slower high-precision reference, add --precision extended.
-That writes to baseline_extended_h1, keeping the standard run separate.
-See VALIDATION.json for the completed initial checks and their scope.
-To re-check all three completed cases:
-  ..\ih2662.cmd check_results.py
-Solver reference: https://devsim.net/solver.html
+Inspect `peak_field.csv`, `peak_field.png`, `final_field.png`, `final.vtu`,
+and `summary.json`. Confirm the terminal prints `PASS`.
+
+## Step 5 — run controls
+
+Flat planar control:
+
+```text
+Windows: .\Run-Week3.cmd run --planar
+macOS:   ./Run-Week3.sh run --planar
+```
+
+Finer local mesh:
+
+```text
+Windows: .\Run-Week3.cmd run --mesh-scale 0.7
+macOS:   ./Run-Week3.sh run --mesh-scale 0.7
+```
+
+Validate all three cases:
+
+```text
+Windows: ..\ih2662.cmd week3\check_results.py
+macOS:   ../ih2662.sh week3/check_results.py
+```
+
+The verified values are 127.14 V (curved baseline), 131.36 V (finer mesh),
+and 591.72 V (planar control). The mesh difference is 3.21%; the planar
+control is 1.38% below 600 V. This is an initial sensitivity check, not full
+convergence.
+
+## Step 6 — view the solved field
+
+Open `Open-Week3-ParaView.cmd` on Windows or
+`Open-Week3-ParaView.command` on macOS. Load `final.vtu`, select
+`ElectricField_V_cm`, enable **Surface With Edges**, use **+Z**, and rescale.
+The strongest field should be examined near the curved edge. `Potential_V` is
+voltage, not electric-field magnitude.
+
+## What to record
+
+Record input snapshot, mesh size, voltage/field CSV, crossing bracket,
+interpolated criterion, peak coordinates, current balance, and the exact
+field-map bias. Keep planar-control and curved-edge conclusions separate.

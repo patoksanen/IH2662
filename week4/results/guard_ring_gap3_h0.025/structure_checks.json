@@ -10,8 +10,8 @@
     51.0
   ],
   "nominal_main_edge_um": 43,
-  "nodes": 156242,
-  "triangles": 311557,
+  "nodes": 156010,
+  "triangles": 311093,
   "physical_groups": {
     "anode": 1,
     "cathode": 1,
@@ -19,5 +19,5 @@
   },
   "local_target_um": 0.025,
   "status": "PASS: geometry and doping only; no bias solution",
-  "minimum_triangle_area_cm2": 7.365745822080793e-13
+  "minimum_triangle_area_cm2": 7.572574396326016e-13
 }
