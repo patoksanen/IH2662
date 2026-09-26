@@ -1,0 +1,23 @@
+{
+  "surface_junctions_um": [
+    43.000000013245085,
+    45.999999986754915,
+    54.0
+  ],
+  "actual_surface_gap_um": 2.99999997350983,
+  "ring_implant_window_um": [
+    49.0,
+    51.0
+  ],
+  "nominal_main_edge_um": 43,
+  "nodes": 156242,
+  "triangles": 311557,
+  "physical_groups": {
+    "anode": 1,
+    "cathode": 1,
+    "Silicon": 2
+  },
+  "local_target_um": 0.025,
+  "status": "PASS: geometry and doping only; no bias solution",
+  "minimum_triangle_area_cm2": 7.365745822080793e-13
+}

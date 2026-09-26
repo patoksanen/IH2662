@@ -1,0 +1,20 @@
+{
+  "precision_change_percent": 0.0,
+  "cases": {
+    "baseline_double_h1": {
+      "criterion_voltage_V": 127.16276440087577,
+      "nodes": 7610
+    },
+    "baseline_double_h0.7": {
+      "criterion_voltage_V": 131.31271442322534,
+      "nodes": 15366
+    },
+    "planar_double_h1": {
+      "criterion_voltage_V": 591.7175879577111,
+      "nodes": 1478
+    }
+  },
+  "mesh_change_percent": 3.160356588908932,
+  "planar_difference_percent": 1.3804020070481517,
+  "scope": "One mesh-refinement comparison and one planar control; no full domain/surface/parameter validation."
+}

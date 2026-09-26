@@ -1,111 +1,130 @@
-﻿# IH2662 Week 1: your first simulation session
+# IH2662 start here
 
-Everything here belongs to the separate Python environment in `.venv`.
-Open PowerShell in this folder (File Explorer address bar: type `powershell`).
-Use `./ih2662.cmd` below so Windows finds Python and the DEVSIM math library.
-DEVSIM and PyVista are Python libraries; they do not have separate desktop editors.
+This page is the shortest complete path from a fresh clone to the first
+validated simulation. Use the command set for your operating system; do not
+mix Windows and macOS path syntax.
 
-## What the four tools do
+## 1. Install and verify
 
-Gmsh defines geometry and divides it into small triangles (2D) or tetrahedra (3D).
-DEVSIM applies material properties, doping, contacts and equations to that mesh,
-then solves for potential, electrons and holes. Electric field follows from the
-potential gradient. ParaView displays result files through a graphical interface.
-PyVista lets you make repeatable visualizations in Python.
+Read `SETUP.md` first.
 
-Workflow: geometry -> mesh -> physics and bias -> solve -> plots -> validation.
+**Windows (PowerShell):**
 
-## 1. Run the official 1D diode (about 10 minutes to explore)
+```powershell
+.\Setup.cmd
+.\Setup.cmd -CheckOnly
+```
 
-    ./ih2662.cmd week1.py diode
+**macOS (Terminal):**
 
-The original code is `examples/diode/diode_1d.py`; helpers are in `diode_common.py`.
-Open the source in your text editor and follow these steps:
-1. CreateMesh defines the 1D points, semiconductor region and two contacts.
-2. SetParameters and SetNetDoping set material values and the p/n doping.
-3. InitialSolution and the first solve find an electrostatic starting solution.
-4. DriftDiffusionInitialSolution adds the electron and hole transport equations.
-5. The while loop raises the top contact from 0 to 0.5 V in 0.1 V steps.
-6. PrintCurrents reports contact currents; write_devices saves the state.
+```bash
+./setup.sh
+./ih2662.sh check_setup.py
+```
 
-Open `results/diode_1d.png` and `results/diode_1d.csv`.
-The plots show the FINAL 0.5 V state, not the full bias sweep.
-Position in the CSV is cm; the plot converts it to micrometres (1 cm = 10,000 um).
-Carrier densities are in cm^-3. A logarithmic axis makes many orders of magnitude visible.
-This is a forward-bias installation example, not a breakdown-voltage measurement.
-Exercise: identify the electron-rich and hole-rich sides using the carrier curves.
-Copy the example before changing it; try a smaller bias step and compare convergence.
+The smoke check verifies pinned packages, Gmsh meshing, meshio, PyVista,
+Matplotlib, and a real DEVSIM diode solve. It does not run the long Week 3/4
+sweeps.
 
-## 2. Generate and explore the official 2D MOSFET mesh
+## 2. Week 1 tutorial
 
-    ./ih2662.cmd week1.py mesh
-    ./ih2662.cmd week1.py gmsh
+Run these in order:
 
-The geometry is `examples/mobility/gmsh_mos2d.geo`.
-The generated mesh is `gmsh_mos2d_generated.msh` in the same folder.
-Drag to rotate, scroll to zoom; use an XY view for this flat cross section.
-Inspect the named physical groups: bulk, oxide, gate and the contacts/interfaces.
-These names connect geometry to DEVSIM regions and boundary conditions.
-Smaller elements resolve sharp changes better but increase solve cost.
-Our generator saves ASCII MSH 2.2 for compatibility with the DEVSIM example.
-The generated mesh is separate from the packaged reference mesh.
+```text
+diode -> mesh -> mos -> view -> screenshot
+```
 
-## 3. Solve the official 2D MOSFET
+Windows:
 
-    ./ih2662.cmd week1.py mos
+```powershell
+.\ih2662.cmd week1.py diode
+.\ih2662.cmd week1.py mesh
+.\ih2662.cmd week1.py mos
+.\ih2662.cmd week1.py view
+.\ih2662.cmd week1.py screenshot
+```
 
-Read `examples/mobility/gmsh_mos2d_create.py` to see the Gmsh import and physical
-name mapping. Read `gmsh_mos2d.py` for the physics and voltage ramps.
-This command initially uses the packaged reference `gmsh_mos2d.msh`.
-It exports the final state to `results/mos2d.vtm` and companion files.
-Keep the VTM and its companion files together when copying results.
-A MOSFET is the roadmap's training example, not the final power-junction design.
+macOS:
 
-## 4. View it with ParaView
+```bash
+./ih2662.sh week1.py diode
+./ih2662.sh week1.py mesh
+./ih2662.sh week1.py mos
+./ih2662.sh week1.py view
+./ih2662.sh week1.py screenshot
+```
 
-Launch ParaView from the Start menu.
-1. File > Open: choose `C:/Users/oksan/IH2662/results/mos2d.vtm`.
-2. Click Apply in the Properties panel (opening alone may not display the data).
-3. Select Potential in the coloring dropdown and click Rescale to Data Range.
-4. Choose Surface With Edges to see the mesh and use the +Z view for the XY plane.
-5. Select logElectrons to explore the carrier distribution in the silicon regions.
-6. File > Save Screenshot exports a picture. File > Save State saves your view setup.
+Inspect `results/diode_1d.png`, `results/mos2d.png`, and
+`results/paraview_mos2d.png`. The diode is a forward-bias installation
+example; it is not a breakdown simulation.
 
-Potential is voltage; it is not electric-field magnitude. Do not call the region
-with the highest potential the region with the highest electric field.
+## 3. Week 3 silicon baseline
 
-## 5. View the same result with PyVista
+Read `week3/START-HERE.txt` for assumptions, equations, units, controls, and
+interpretation. The minimum validated sequence is:
 
-    ./ih2662.cmd week1.py view
+```text
+mesh -> equilibrium -> run -> planar control -> finer mesh -> check_results.py
+```
 
-Drag to rotate, scroll to zoom, press r to reset the camera, q to close.
-To save a repeatable picture without opening a viewer:
+Windows:
 
-    ./ih2662.cmd week1.py screenshot
+```powershell
+.\ih2662.cmd week3\silicon_baseline.py mesh
+.\ih2662.cmd week3\silicon_baseline.py equilibrium
+.\ih2662.cmd week3\silicon_baseline.py run
+.\ih2662.cmd week3\silicon_baseline.py run --planar
+.\ih2662.cmd week3\silicon_baseline.py run --mesh-scale 0.7
+.\ih2662.cmd week3\check_results.py
+```
 
-Read the small `view()` function in week1.py: read loads the VTM, combine joins
-its blocks for plotting, add_mesh chooses the scalar/coloring, view_xy sets the camera.
-Exercise: change Potential to logElectrons in a copy and compare the images.
+macOS:
 
-## Week 1 completion and limits
+```bash
+./ih2662.sh week3/silicon_baseline.py mesh
+./ih2662.sh week3/silicon_baseline.py equilibrium
+./ih2662.sh week3/silicon_baseline.py run
+./ih2662.sh week3/silicon_baseline.py run --planar
+./ih2662.sh week3/silicon_baseline.py run --mesh-scale 0.7
+./ih2662.sh week3/check_results.py
+```
 
-Check logs for successful runs, rather than assuming that an import proves a solver works.
-Repeat installation and the diode run on your teammate's laptop; this setup is local to yours.
-The roadmap also asks your team to choose voltage class and 3D scope and send a proposal.
-Those decisions and sending the proposal are not performed by this installation.
-Before the power-device study, establish your Week 2 physical parameters and units.
-Mesh refinement and comparison with an analytical result are needed before trusting a
-breakdown estimate. Reaching an assumed critical field is a criterion, not an automatic
-avalanche-physics model.
+Expected validated values are approximately 127.14 V for the standard curved
+case, 131.36 V for the finer mesh, and 591.72 V for the planar control.
 
-## Official references
+## 4. Week 4 floating guard ring
 
-- Gmsh: https://gmsh.info/doc/texinfo/gmsh.html
-- DEVSIM installation: https://github.com/devsim/devsim/blob/main/INSTALL.md
-- DEVSIM diode: https://devsim.net/examples_diode.html
-- DEVSIM meshing: https://devsim.net/meshing.html
-- ParaView: https://docs.paraview.org/en/latest/UsersGuide/introduction.html
-- PyVista: https://docs.pyvista.org/getting-started/
+Read `week4/START-HERE.md` before changing parameters. Run:
 
-The official example files were copied from the installed DEVSIM 2.11.0 distribution;
-their original copyright and license headers are retained. week1.py is a teaching wrapper.
+Windows:
+
+```powershell
+.\ih2662.cmd week4\guard_ring.py mesh
+.\ih2662.cmd week4\guard_ring.py check
+.\ih2662.cmd week4\guard_ring.py run
+```
+
+macOS:
+
+```bash
+./ih2662.sh week4/guard_ring.py mesh
+./ih2662.sh week4/guard_ring.py check
+./ih2662.sh week4/guard_ring.py run
+```
+
+The saved initial design gives approximately 171.87 V. This is a promising
+comparison, not an optimized design or a converged guard-ring result.
+
+## 5. Viewing outputs
+
+Use ParaView for `.vtu`/`.vtm` files and PyVista for scripted screenshots.
+
+| Dataset | Windows | macOS |
+|---|---|---|
+| Week 1 MOSFET | `Open-ParaView.cmd` | `./Open-ParaView.command` |
+| Week 3 final field | `week3/Open-Week3-ParaView.cmd` | `./week3/Open-Week3-ParaView.command` |
+| Week 4 structure | `week4/Open-Week4-ParaView.cmd` | `./week4/Open-Week4-ParaView.command` |
+
+In ParaView click **Apply**, select the documented scalar (`ElectricField_V_cm`
+or `DopingSignedLog10`), enable **Surface With Edges**, use **+Z**, and
+rescale the color range. Never interpret `Potential_V` as electric field.

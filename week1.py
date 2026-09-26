@@ -8,9 +8,10 @@ import sys
 ROOT = Path(__file__).resolve().parent
 # Configure the MKL runtime before importing DEVSIM, even when run directly.
 bin_dir = ROOT / '.venv' / 'Library' / 'bin'
-os.environ['PATH'] = str(bin_dir) + os.pathsep + os.environ.get('PATH', '')
-os.environ['DEVSIM_MATH_LIBS'] = str(bin_dir / 'mkl_rt.2.dll')
-dll_handle = os.add_dll_directory(str(bin_dir))
+if os.name == 'nt' and bin_dir.is_dir():
+    os.environ['PATH'] = str(bin_dir) + os.pathsep + os.environ.get('PATH', '')
+    os.environ['DEVSIM_MATH_LIBS'] = str(bin_dir / 'mkl_rt.2.dll')
+    dll_handle = os.add_dll_directory(str(bin_dir))
 
 
 def official(folder, filename):
@@ -101,4 +102,3 @@ if __name__ == '__main__':
     action = parser.parse_args().action
     {'diode': diode, 'mesh': mesh, 'mos': mos, 'view': view,
      'screenshot': lambda: view(True), 'gmsh': gmsh_gui}[action]()
-

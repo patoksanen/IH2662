@@ -16,4 +16,10 @@ Open edge_0025/final.vtu with ElectricField_V_cm and Surface With Edges. The fin
 
 Validation details and final contact-current imbalance are in refinement_0025_comparison.json. These checks verify the run outputs, not physical accuracy or full mesh convergence. The result remains a constant critical-field estimate without impact ionization.
 
-Reproduce from the IH2662 folder: ih2662.cmd week3/mesh_investigation/experiment.py edge_0025. Rerunning replaces this variant output.
+Reproduce from the repository root:
+
+Windows: `ih2662.cmd week3/mesh_investigation/experiment.py edge_0025`
+
+macOS: `./ih2662.sh week3/mesh_investigation/experiment.py edge_0025`
+
+Rerunning replaces this variant output.

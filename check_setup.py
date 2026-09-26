@@ -9,6 +9,10 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parent
+MACOS_ONLY_EXCLUDED = {
+    'intel-cmplr-lib-ur', 'intel-openmp', 'mkl',
+    'onemkl-license', 'tbb', 'tcmlib', 'umf',
+}
 
 def main():
     mismatches = []
@@ -17,6 +21,8 @@ def main():
         if not line or line.startswith('#'):
             continue
         name, expected = line.split('==', 1)
+        if sys.platform == 'darwin' and name.lower() in MACOS_ONLY_EXCLUDED:
+            continue
         try:
             actual = version(name)
         except PackageNotFoundError:
@@ -25,7 +31,7 @@ def main():
             mismatches.append(f'{name}: expected {expected}, found {actual}')
     if mismatches:
         raise RuntimeError('Package versions differ from requirements-lock.txt:\n' + '\n'.join(mismatches))
-    print('PASS: all pinned package versions match.', flush=True)
+    print('PASS: all applicable pinned package versions match.', flush=True)
     import gmsh
     import numpy as np
     import matplotlib
