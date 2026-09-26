@@ -1,7 +1,7 @@
 # IH2662 - Junction termination simulations
 
 Silicon power-junction studies using Gmsh, DEVSIM and ParaView/PyVista.
-Current work compares a plain curved junction with a floating guard ring.
+Current work compares a plain curved junction with a floating guard ring and prepares a separate oxide field-plate case.
 Results use a constant peak-electric-field criterion, not an impact-ionization avalanche model.
 
 ## Project layout
@@ -9,6 +9,7 @@ Results use a constant peak-electric-field criterion, not an impact-ionization a
 - `week3/`: plain silicon junction, planar control and mesh investigation.
 - `week3/mesh_investigation/edge_0025/`: accepted working baseline.
 - `week4/`: silicon floating guard-ring geometry, solver and results.
+- `week4/field_plate/`: separate anode-connected field plate over oxide; see its START-HERE.md. Use `week4/Run-FieldPlate.cmd`. The completed Windows silicon threshold estimate is 189.147 V.
 - `PROJECT-STATUS.md`: chronological decisions and progress; later entries supersede earlier plans.
 - `START-HERE.md`: initial setup and Week 1 walkthrough.
 

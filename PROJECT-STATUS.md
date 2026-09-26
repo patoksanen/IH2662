@@ -40,3 +40,12 @@ Local target 0.025 um at both main edge and ring. Mesh: 156242 nodes, 311557 tri
 Geometry/doping separation, triangular mesh area, DEVSIM import, independently evaluated doping, two external contacts only, and positive node volumes all passed.
 Results: week4/results/guard_ring_gap3_h0.025/structure_closeup.png and structure.vtu.
 No equilibrium or reverse-bias sweep has been run for the guard ring. Next inspect the structure, then run week4/Run-Week4.cmd run. The sweep is configured to save an identical-bias field map at 121.749267578125 V if reached before the threshold.
+
+## Field plate prepared - 24 September 2026
+The separate silicon field-plate case is in week4/field_plate. Initial design: 1 um SiO2, plate to x=48 um (5 um past junction), tied to anode with ideal p-contact-matched potential reference; no guard ring.
+Mesh: 90797 silicon nodes and 34705 oxide nodes (shared interface coordinates). Local target 0.025 um.
+Analytical two-layer capacitor, mesh/import/doping checks and actual equilibrium-to-1 V reverse test passed. Final smoke-test current imbalance about 0.36%. Silicon and oxide fields are exported separately.
+Full sweep NOT run; no field-plate threshold is available. Next use week4/Run-FieldPlate.cmd option 4. Initial dimensions are not optimized; oxide charge, leakage/breakdown and avalanche remain omitted.
+
+## Field-plate sweep completed
+Windows full-run summary reports 189.147324 V, with the identical-bias comparison map saved. Final oxide peak is 6.02685 MV/cm and current imbalance 0.622%. Full-run CSV checks passed; neither avalanche nor oxide breakdown is modelled, and mesh convergence is unestablished.

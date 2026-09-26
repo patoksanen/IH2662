@@ -1,0 +1,13 @@
+{
+  "status": "PASS: two-region import, silicon doping, positive volumes, oxide-only plate contact",
+  "contacts": [
+    "anode",
+    "cathode",
+    "plate"
+  ],
+  "interface": "silicon_oxide",
+  "oxide_equations": [
+    "PotentialEquation"
+  ],
+  "plate_offset_V": -0.41658995396096793
+}

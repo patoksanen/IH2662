@@ -1,0 +1,16 @@
+{
+  "Silicon": {
+    "nodes": 90797,
+    "triangles": 180186,
+    "area_cm2": 7.56e-05
+  },
+  "Oxide": {
+    "nodes": 34705,
+    "triangles": 66991,
+    "area_cm2": 8.200000000000001e-07
+  },
+  "status": "PASS: geometry and area checks",
+  "junction_edge_um": 43,
+  "plate_tip_um": 48,
+  "oxide_thickness_um": 1
+}

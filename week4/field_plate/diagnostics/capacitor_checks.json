@@ -1,0 +1,21 @@
+{
+  "status": "PASS: series-capacitor fields, displacement balance, potential continuity at 1 and 2 V",
+  "checks": [
+    {
+      "bias_V": 1.0,
+      "field_relative_errors": {
+        "Oxide": 1.0610771520684164e-15,
+        "Silicon": 1.7053025658242404e-15
+      },
+      "interface_mismatch_V": 0.0
+    },
+    {
+      "bias_V": 2.0,
+      "field_relative_errors": {
+        "Oxide": 1.0610771520684164e-15,
+        "Silicon": 1.7053025658242404e-15
+      },
+      "interface_mismatch_V": 0.0
+    }
+  ]
+}

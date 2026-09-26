@@ -1,0 +1,47 @@
+{
+  "case": "silicon_field_plate",
+  "status": "silicon_threshold_reached",
+  "criterion_voltage_V": 189.14732353699165,
+  "last_voltage_V": 189.749267578125,
+  "last_peak_field_V_cm": 262656.003423167,
+  "last_oxide_peak_field_V_cm": 6026848.529887623,
+  "final_relative_current_imbalance": 0.006219245407651774,
+  "criterion": "Silicon constant peak-field threshold; no avalanche or oxide-breakdown model",
+  "mesh_convergence": "Not established for this geometry",
+  "snapshot_voltages_saved_V": [
+    121.749267578125
+  ],
+  "parameters": {
+    "target_voltage_V": 600,
+    "donor_cm3": 367000000000000,
+    "critical_field_V_cm": 262000,
+    "hand_depletion_um": 45.9,
+    "relative_permittivity": 11.7,
+    "temperature_K": 300,
+    "electron_mobility_cm2_Vs": 1420,
+    "hole_mobility_cm2_Vs": 450,
+    "intrinsic_cm3": 10000000000,
+    "lifetime_s": 1e-05,
+    "acceptor_peak_cm3": 100000000000000000,
+    "junction_depth_um": 3,
+    "implant_flat_extent_um": 40,
+    "anode_extent_um": 38,
+    "device_width_um": 120,
+    "drift_thickness_um": 60,
+    "mesh_junction_um": 0.3,
+    "mesh_bulk_um": 3,
+    "voltage_step_V": 10,
+    "crossing_step_V": 1,
+    "max_voltage_V": 700,
+    "planar_control_width_um": 10,
+    "oxide_thickness_um": 1,
+    "oxide_relative_permittivity": 3.9,
+    "plate_extension_um": 5,
+    "plate_workfunction_offset_V": 0,
+    "local_mesh_um": 0.025,
+    "oxide_mesh_um": 0.15,
+    "snapshot_voltages_V": [
+      121.749267578125
+    ]
+  }
+}

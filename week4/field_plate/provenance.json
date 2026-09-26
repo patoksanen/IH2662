@@ -1,0 +1,7 @@
+{
+  "silicon_reference": "week3/mesh_investigation/edge_0025",
+  "field_reconstruction_source": "week3/silicon_baseline.py",
+  "source_sha256": "f3a65fc7b9c2e9090b7e16a582ce038f125de8cfc1db371b1ebea83f95af0e2d",
+  "oxide_helpers": "Installed DEVSIM 2.11.0 simple_physics, Apache-2.0",
+  "initial_dimensions": "1 um oxide, 5 um extension beyond junction; not optimized"
+}
